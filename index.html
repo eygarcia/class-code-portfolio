@@ -214,6 +214,18 @@
       text-align: center;
     }
 
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+
+    .hero-actions .button {
+      min-height: 3rem;
+      padding-inline: 1rem;
+    }
+
     .stats {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -267,6 +279,74 @@
       align-items: end;
       justify-content: flex-end;
       gap: 0.65rem;
+    }
+
+    .featured { padding: 0 0 3.5rem; }
+
+    .featured-card {
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(250px, .65fr);
+      gap: 1.5rem;
+      padding: clamp(1.35rem, 4vw, 2.25rem);
+      border: 1px solid rgba(65, 217, 223, 0.35);
+      border-radius: 1.35rem;
+      background: linear-gradient(135deg, rgba(15, 54, 91, .92), rgba(7, 23, 47, .96));
+      box-shadow: var(--shadow);
+    }
+
+    .featured-card::after {
+      content: "";
+      position: absolute;
+      width: 18rem;
+      height: 18rem;
+      right: -6rem;
+      top: -8rem;
+      border: 1px solid rgba(65, 217, 223, .18);
+      border-radius: 50%;
+      box-shadow: 0 0 0 3rem rgba(47,155,244,.03), 0 0 0 6rem rgba(65,217,223,.02);
+      pointer-events: none;
+    }
+
+    .featured-card h2 { margin-top: .25rem; }
+    .featured-card p { color: var(--muted); max-width: 760px; }
+    .featured-kicker {
+      display: inline-flex;
+      width: fit-content;
+      padding: .32rem .62rem;
+      border-radius: 999px;
+      color: var(--navy-950);
+      background: var(--gold-400);
+      font-size: .72rem;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .feature-points {
+      display: grid;
+      gap: .65rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      align-content: center;
+    }
+
+    .feature-points li {
+      padding: .75rem .85rem;
+      border: 1px solid var(--line);
+      border-radius: .8rem;
+      color: #d9e9f8;
+      background: rgba(4,16,32,.42);
+      font-size: .9rem;
+    }
+
+    .feature-points li::before {
+      content: "✓";
+      margin-right: .55rem;
+      color: var(--cyan-400);
+      font-weight: 900;
     }
 
     .catalog { padding: 1rem 0 5rem; }
@@ -481,7 +561,7 @@
       .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .featured-project { grid-template-columns: 1fr; }
       .featured-actions { justify-content: flex-start; }
-      .hero-grid { grid-template-columns: 1fr; }
+      .hero-grid, .featured-card { grid-template-columns: 1fr; }
       .profile-card { display: none; }
     }
 
@@ -522,12 +602,16 @@
       <div class="shell hero-grid">
         <div>
           <p class="eyebrow">Teaching • Technology • Cybersecurity</p>
-          <h1 id="page-title">Ed Garcia’s <span class="accent">AI GitHub</span> Project Index</h1>
-          <p class="hero-copy">A collection of interactive learning tools, simulations, and practical resources for cybersecurity, networking, cloud computing, and AI education.</p>
+          <h1 id="page-title">Ed Garcia’s <span class="accent">Cybersecurity & AI</span> Learning Lab</h1>
+          <p class="hero-copy">Hands-on cybersecurity, networking, cloud, and AI learning experiences built to move students from concepts to confident problem solving. Explore interactive simulations, certification practice, classroom tools, and applied technology projects.</p>
+          <div class="hero-actions" aria-label="Portfolio actions">
+            <a class="button primary" href="#featured">View newest project ↓</a>
+            <a class="button" href="#projects">Browse all projects</a>
+          </div>
           <div class="stats" aria-label="Portfolio summary">
-            <div class="stat"><strong id="projectTotal">12</strong><span>Working projects showcased</span></div>
-            <div class="stat"><strong id="launchTotal">9</strong><span>Launchable projects</span></div>
-            <div class="stat"><strong>Live</strong><span>Synced from GitHub</span></div>
+            <div class="stat"><strong id="projectTotal">15</strong><span>Projects cataloged</span></div>
+            <div class="stat"><strong id="launchTotal">10</strong><span>Interactive launches</span></div>
+            <div class="stat"><strong>Applied</strong><span>Built for student learning</span></div>
           </div>
         </div>
         <a class="profile-card" href="https://github.com/eygarcia" target="_blank" rel="noopener noreferrer" aria-label="Open Ed Garcia's GitHub profile">
@@ -549,6 +633,26 @@
           <a class="button primary" href="https://eygarcia.github.io/Wireless_Response_Unit/" target="_blank" rel="noopener noreferrer">Launch Simulation ↗</a>
           <a class="button" href="https://github.com/eygarcia/Wireless_Response_Unit" target="_blank" rel="noopener noreferrer">View Source ↗</a>
         </div>
+      </div>
+    </section>
+
+    <section class="featured shell" id="featured" aria-labelledby="featured-title">
+      <div class="featured-card">
+        <div>
+          <span class="featured-kicker">Newest • Featured Project</span>
+          <h2 id="featured-title">Wireless Response Unit</h2>
+          <p>A 30-mission wireless networking NOC simulation designed for community college students studying CompTIA Network+ concepts. Students diagnose wireless incidents, apply networking knowledge, and practice operational decision-making in an interactive environment.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="https://eygarcia.github.io/Wireless_Response_Unit/" target="_blank" rel="noopener noreferrer">Launch Simulation ↗</a>
+            <a class="button" href="https://github.com/eygarcia/Wireless_Response_Unit" target="_blank" rel="noopener noreferrer">View Source ↗</a>
+          </div>
+        </div>
+        <ul class="feature-points" aria-label="Wireless Response Unit highlights">
+          <li>30 mission-based wireless scenarios</li>
+          <li>Network+ aligned applied learning</li>
+          <li>NOC-style troubleshooting workflow</li>
+          <li>HTML, CSS, and JavaScript interaction</li>
+        </ul>
       </div>
     </section>
 
@@ -591,7 +695,7 @@
 
   <footer class="site-footer">
     <div class="shell footer-inner">
-      <p>© <span id="year"></span> Ed Garcia. Built for accessible technology education.</p>
+      <p>© <span id="year"></span> Ed Garcia. Hands-on cybersecurity, networking, cloud, and AI education.</p>
       <p><a href="https://eygarcia.github.io/">eygarcia.github.io</a></p>
     </div>
   </footer>
@@ -604,6 +708,7 @@
 
     // Local snapshot: ensures the page remains useful if GitHub's public API is unavailable.
     const FALLBACK_REPOS = [
+      {name:'Wireless_Response_Unit',description:'A 30-mission wireless networking NOC simulation for community college students studying CompTIA Network+ concepts.',html_url:'https://github.com/eygarcia/Wireless_Response_Unit',homepage:null,language:'HTML',has_pages:true,fork:false,archived:false,updated_at:'2026-10-06T03:10:21Z'},
       {name:'Wireless_Response_Unit',description:'Interactive wireless simulation for applied networking and cybersecurity response practice.',html_url:'https://github.com/eygarcia/Wireless_Response_Unit',homepage:'https://eygarcia.github.io/Wireless_Response_Unit/',language:'HTML',has_pages:true,fork:false,archived:false,updated_at:'2026-10-06T00:00:00Z'},
       {name:'youtube_video_filter',description:'Find and evaluate YouTube videos using education-focused quality criteria.',html_url:'https://github.com/eygarcia/youtube_video_filter',homepage:null,language:'HTML',has_pages:true,fork:false,archived:false,updated_at:'2026-09-22T02:45:42Z'},
       {name:'class-code-portfolio',description:'A portfolio of classroom code and interactive educational projects.',html_url:'https://github.com/eygarcia/class-code-portfolio',homepage:null,language:'HTML',has_pages:true,fork:false,archived:false,updated_at:'2026-09-15T02:53:09Z'},
@@ -622,6 +727,7 @@
     ];
 
     const DETAILS = {
+      'Wireless_Response_Unit': {title:'Wireless Response Unit', category:'Networking'},
       'Wireless_Response_Unit': {title:'Wireless Response Unit', category:'Networking'},
       'youtube_video_filter': {title:'YouTube Video Finder & Filter', category:'Educational Tools'},
       'class-code-portfolio': {title:'Class Code Portfolio', category:'Educational Tools'},
