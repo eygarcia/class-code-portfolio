@@ -232,6 +232,43 @@
     .stat strong { display: block; color: var(--white); font-size: 1.35rem; line-height: 1.15; }
     .stat span { color: var(--muted); font-size: 0.8rem; }
 
+    .featured { padding: 0 0 2.4rem; }
+
+    .featured-project {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 1rem;
+      padding: 1.4rem;
+      border: 1px solid rgba(65, 217, 223, 0.45);
+      border-radius: var(--radius);
+      background:
+        radial-gradient(circle at 90% 10%, rgba(65, 217, 223, 0.13), transparent 16rem),
+        linear-gradient(145deg, rgba(17, 51, 92, 0.95), rgba(7, 23, 47, 0.96));
+      box-shadow: var(--shadow);
+    }
+
+    .featured-project h2 { margin: 0.3rem 0 0.6rem; }
+    .featured-project p { margin: 0; color: var(--muted); }
+    .featured-badge {
+      display: inline-flex;
+      width: fit-content;
+      padding: 0.3rem 0.62rem;
+      border-radius: 999px;
+      color: var(--navy-950);
+      background: var(--gold-400);
+      font-size: 0.75rem;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .featured-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: end;
+      justify-content: flex-end;
+      gap: 0.65rem;
+    }
+
     .catalog { padding: 1rem 0 5rem; }
 
     .section-heading {
@@ -442,6 +479,8 @@
 
     @media (max-width: 900px) {
       .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .featured-project { grid-template-columns: 1fr; }
+      .featured-actions { justify-content: flex-start; }
       .hero-grid { grid-template-columns: 1fr; }
       .profile-card { display: none; }
     }
@@ -486,7 +525,7 @@
           <h1 id="page-title">Ed Garcia’s <span class="accent">AI GitHub</span> Project Index</h1>
           <p class="hero-copy">A collection of interactive learning tools, simulations, and practical resources for cybersecurity, networking, cloud computing, and AI education.</p>
           <div class="stats" aria-label="Portfolio summary">
-            <div class="stat"><strong id="projectTotal">14</strong><span>Public repositories</span></div>
+            <div class="stat"><strong id="projectTotal">12</strong><span>Working projects showcased</span></div>
             <div class="stat"><strong id="launchTotal">9</strong><span>Launchable projects</span></div>
             <div class="stat"><strong>Live</strong><span>Synced from GitHub</span></div>
           </div>
@@ -498,13 +537,28 @@
       </div>
     </section>
 
+    <section class="featured shell" id="featured-project" aria-labelledby="featured-title">
+      <div class="featured-project">
+        <div>
+          <span class="featured-badge">Newest Working Project</span>
+          <p class="eyebrow" style="margin-top:1rem">Wireless • Networking • Cybersecurity</p>
+          <h2 id="featured-title">Wireless Response Unit</h2>
+          <p>An interactive wireless simulation designed for hands-on learning, scenario response, and applied networking/cybersecurity instruction. This is the newest project in the portfolio.</p>
+        </div>
+        <div class="featured-actions">
+          <a class="button primary" href="https://eygarcia.github.io/Wireless_Response_Unit/" target="_blank" rel="noopener noreferrer">Launch Simulation ↗</a>
+          <a class="button" href="https://github.com/eygarcia/Wireless_Response_Unit" target="_blank" rel="noopener noreferrer">View Source ↗</a>
+        </div>
+      </div>
+    </section>
+
     <section class="catalog shell" id="projects" aria-labelledby="projects-title">
       <div class="section-heading">
         <div>
           <p class="eyebrow">Project Library</p>
-          <h2 id="projects-title">Explore the collection</h2>
+          <h2 id="projects-title">All Working Projects</h2>
         </div>
-        <p>Search, filter, launch, or inspect the source code.</p>
+        <p>Search, filter, launch, or inspect the source code for the complete working-project portfolio.</p>
       </div>
 
       <div class="controls" role="search">
@@ -550,6 +604,7 @@
 
     // Local snapshot: ensures the page remains useful if GitHub's public API is unavailable.
     const FALLBACK_REPOS = [
+      {name:'Wireless_Response_Unit',description:'Interactive wireless simulation for applied networking and cybersecurity response practice.',html_url:'https://github.com/eygarcia/Wireless_Response_Unit',homepage:'https://eygarcia.github.io/Wireless_Response_Unit/',language:'HTML',has_pages:true,fork:false,archived:false,updated_at:'2026-10-06T00:00:00Z'},
       {name:'youtube_video_filter',description:'Find and evaluate YouTube videos using education-focused quality criteria.',html_url:'https://github.com/eygarcia/youtube_video_filter',homepage:null,language:'HTML',has_pages:true,fork:false,archived:false,updated_at:'2026-09-22T02:45:42Z'},
       {name:'class-code-portfolio',description:'A portfolio of classroom code and interactive educational projects.',html_url:'https://github.com/eygarcia/class-code-portfolio',homepage:null,language:'HTML',has_pages:true,fork:false,archived:false,updated_at:'2026-09-15T02:53:09Z'},
       {name:'M57_soc_simulator',description:'A Bash-based Security Operations Center simulator for applied cybersecurity practice.',html_url:'https://github.com/eygarcia/M57_soc_simulator',homepage:null,language:'HTML',has_pages:true,fork:false,archived:false,updated_at:'2026-09-14T23:51:05Z'},
@@ -567,6 +622,7 @@
     ];
 
     const DETAILS = {
+      'Wireless_Response_Unit': {title:'Wireless Response Unit', category:'Networking'},
       'youtube_video_filter': {title:'YouTube Video Finder & Filter', category:'Educational Tools'},
       'class-code-portfolio': {title:'Class Code Portfolio', category:'Educational Tools'},
       'M57_soc_simulator': {title:'M57 SOC Simulator', category:'Cybersecurity'},
@@ -583,7 +639,8 @@
       'ctf-katana': {title:'CTF Katana', category:'Cybersecurity'}
     };
 
-    const categories = ['All', 'Educational Tools', 'Cybersecurity', 'Networking', 'Cloud & AI', 'Simulations', 'IT Fundamentals', 'Profile'];
+    const SHOWCASE_EXCLUDE = new Set(['eygarcia', 'desktop-tutorial', 'class-code-portfolio']);
+    const categories = ['All', 'Educational Tools', 'Cybersecurity', 'Networking', 'Cloud & AI', 'Simulations', 'IT Fundamentals'];
     const state = { repos: FALLBACK_REPOS, category: 'All', query: '', sort: 'updated' };
 
     const grid = document.getElementById('projectGrid');
@@ -649,7 +706,7 @@
     function visibleRepos() {
       const query = state.query.trim().toLowerCase();
       return state.repos
-        .filter(repo => repo.name.toLowerCase() !== `${GITHUB_USER}.github.io`)
+        .filter(repo => repo.name.toLowerCase() !== `${GITHUB_USER}.github.io` && !SHOWCASE_EXCLUDE.has(repo.name))
         .map(repo => ({...repo, details:getDetails(repo)}))
         .filter(repo => state.category === 'All' || repo.details.category === state.category)
         .filter(repo => !query || `${repo.name} ${repo.details.title} ${repo.details.category} ${repo.description || ''} ${repo.language || ''}`.toLowerCase().includes(query))
@@ -709,7 +766,7 @@
     }
 
     function updateStats() {
-      const repos = state.repos.filter(repo => repo.name.toLowerCase() !== `${GITHUB_USER}.github.io`);
+      const repos = state.repos.filter(repo => repo.name.toLowerCase() !== `${GITHUB_USER}.github.io` && !SHOWCASE_EXCLUDE.has(repo.name));
       document.getElementById('projectTotal').textContent = repos.length;
       document.getElementById('launchTotal').textContent = repos.filter(projectUrl).length;
     }
