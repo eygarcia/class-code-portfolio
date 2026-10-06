@@ -349,6 +349,84 @@
       font-weight: 900;
     }
 
+    .impact,
+    .tech,
+    .leadership {
+      padding: 0 0 4rem;
+    }
+
+    .impact-grid,
+    .tech-grid,
+    .leadership-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1.25rem;
+    }
+
+    .impact-card,
+    .tech-card,
+    .leadership-card {
+      padding: 1.15rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(155deg, rgba(13, 44, 80, 0.78), rgba(7, 23, 47, 0.88));
+      box-shadow: 0 12px 30px rgba(0,0,0,.14);
+    }
+
+    .impact-card strong,
+    .tech-card strong,
+    .leadership-card strong {
+      display: block;
+      margin-bottom: .35rem;
+      color: var(--white);
+      font-size: 1.02rem;
+    }
+
+    .impact-card p,
+    .tech-card p,
+    .leadership-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .metric {
+      display: block;
+      margin-bottom: .4rem;
+      color: var(--cyan-400);
+      font-size: 1.55rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin-top: .85rem;
+    }
+
+    .tech-tag {
+      display: inline-flex;
+      padding: .35rem .6rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: #d8e9f8;
+      background: rgba(4,16,32,.35);
+      font-size: .76rem;
+      font-weight: 700;
+    }
+
+    .callout {
+      margin-top: 1rem;
+      padding: 1rem 1.1rem;
+      border-left: 4px solid var(--gold-400);
+      border-radius: .7rem;
+      color: #dce9f6;
+      background: rgba(244,201,93,.06);
+    }
+
     .catalog { padding: 1rem 0 5rem; }
 
     .section-heading {
@@ -558,7 +636,10 @@
     .footer-inner p { margin: 0; }
 
     @media (max-width: 900px) {
-      .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .project-grid,
+      .impact-grid,
+      .tech-grid,
+      .leadership-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .featured-project { grid-template-columns: 1fr; }
       .featured-actions { justify-content: flex-start; }
       .hero-grid, .featured-card { grid-template-columns: 1fr; }
@@ -571,7 +652,11 @@
       .brand-text { max-width: 12rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
       .hero { padding-top: 3.5rem; }
       .stats { grid-template-columns: 1fr; }
-      .controls, .project-grid { grid-template-columns: 1fr; }
+      .controls,
+      .project-grid,
+      .impact-grid,
+      .tech-grid,
+      .leadership-grid { grid-template-columns: 1fr; }
       .section-heading, .footer-inner { align-items: flex-start; flex-direction: column; }
       .status-row { flex-direction: column; gap: 0.35rem; }
     }
@@ -591,7 +676,8 @@
         <span class="brand-text">Ed Garcia Project Index</span>
       </a>
       <nav class="header-actions" aria-label="Primary navigation">
-        <a class="nav-link" href="#projects">Explore projects</a>
+        <a class="nav-link" href="#impact">Impact</a>
+        <a class="nav-link" href="#projects">Projects</a>
         <a class="nav-link" href="https://github.com/eygarcia" target="_blank" rel="noopener noreferrer">GitHub profile ↗</a>
       </nav>
     </div>
@@ -653,6 +739,91 @@
           <li>NOC-style troubleshooting workflow</li>
           <li>HTML, CSS, and JavaScript interaction</li>
         </ul>
+      </div>
+    </section>
+
+    <section class="impact shell" id="impact" aria-labelledby="impact-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Educational Impact</p>
+          <h2 id="impact-title">Cybersecurity education built around applied learning</h2>
+        </div>
+        <p>Projects connect classroom concepts to authentic technical practice.</p>
+      </div>
+      <div class="impact-grid">
+        <article class="impact-card">
+          <span class="metric">Top 10</span>
+          <strong>National Cyber League performance</strong>
+          <p>Moorpark College students have achieved national-level competitive cybersecurity results, including a 7th-place nationwide finish.</p>
+        </article>
+        <article class="impact-card">
+          <span class="metric">CAE-CD</span>
+          <strong>National cybersecurity designation</strong>
+          <p>Instruction aligns with the rigor and applied-learning expectations associated with a Center of Academic Excellence in Cyber Defense program.</p>
+        </article>
+        <article class="impact-card">
+          <span class="metric">BS</span>
+          <strong>Bachelor's degree leadership</strong>
+          <p>Lead faculty work supports development of Moorpark College's Applied Cyberdefense and Network Operations bachelor's degree pathway.</p>
+        </article>
+      </div>
+      <div class="callout">The portfolio is designed to demonstrate how AI-assisted instructional design, simulation, gamification, and hands-on cybersecurity labs can improve student confidence, technical fluency, and workforce readiness.</div>
+    </section>
+
+    <section class="tech shell" id="technologies" aria-labelledby="tech-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Technology Stack</p>
+          <h2 id="tech-title">Tools used across the learning projects</h2>
+        </div>
+        <p>A practical stack that supports rapid prototyping and classroom deployment.</p>
+      </div>
+      <div class="tech-grid">
+        <article class="tech-card">
+          <strong>Interactive Web Development</strong>
+          <p>Browser-based projects are designed to run with minimal setup on student systems and classroom computers.</p>
+          <div class="tech-tags">
+            <span class="tech-tag">HTML5</span><span class="tech-tag">CSS3</span><span class="tech-tag">JavaScript</span><span class="tech-tag">Responsive UI</span>
+          </div>
+        </article>
+        <article class="tech-card">
+          <strong>Cybersecurity & Networking</strong>
+          <p>Simulations reinforce technical troubleshooting, protocol knowledge, infrastructure concepts, and security operations.</p>
+          <div class="tech-tags">
+            <span class="tech-tag">TCP/IP</span><span class="tech-tag">OSI</span><span class="tech-tag">Wireless</span><span class="tech-tag">SOC</span><span class="tech-tag">Network+</span>
+          </div>
+        </article>
+        <article class="tech-card">
+          <strong>Cloud, AI & Automation</strong>
+          <p>Projects incorporate cloud fundamentals, generative AI workflows, and rapid development methods for educational content.</p>
+          <div class="tech-tags">
+            <span class="tech-tag">Azure</span><span class="tech-tag">AWS</span><span class="tech-tag">Generative AI</span><span class="tech-tag">GitHub Pages</span><span class="tech-tag">Automation</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="leadership shell" id="leadership" aria-labelledby="leadership-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Faculty Leadership</p>
+          <h2 id="leadership-title">Program development, innovation, and student success</h2>
+        </div>
+        <p>A faculty portfolio that connects curriculum, competitions, labs, and workforce preparation.</p>
+      </div>
+      <div class="leadership-grid">
+        <article class="leadership-card">
+          <strong>Distinguished Faculty Recognition</strong>
+          <p>Recipient of the 2024 Moorpark College Distinguished Faculty Award, recognizing sustained contributions to teaching and student success.</p>
+        </article>
+        <article class="leadership-card">
+          <strong>Curriculum & Degree Development</strong>
+          <p>Developing practical cybersecurity, cloud, networking, and applied technology curriculum with strong emphasis on labs and workforce-relevant skills.</p>
+        </article>
+        <article class="leadership-card">
+          <strong>NSF-Ready Educational Innovation</strong>
+          <p>The project collection provides concrete examples of scalable instructional innovation that can support faculty development, student research, and grant-funded experimentation.</p>
+        </article>
       </div>
     </section>
 
